@@ -4,11 +4,15 @@ void Game::Start()
 {
 	//initialize things here
 	running = true;
+	
 }
 
 void Game::End()
 {
 	//destroy everything initialized in start
+
+	window->close();
+	running = false;
 }
 
 void Game::Update()
@@ -38,15 +42,17 @@ void Game::Play()
 {
 	Start();
 	while (running) {
-		while(window->isOpen)
-		sf::Event mevent;
-		while (window->pollEvent(mevent))
-		{
-			if (mevent.type == sf::Event::Closed)
-				window->close();
+		while (window->isOpen()) {
+			sf::Event mevent;
+			while (window->pollEvent(mevent))
+			{
+				if (mevent.type == sf::Event::Closed) {
+					End();
+				}
+			}
+			Update();
+			Render();
 		}
-		Update();
-		Render();
 	}
 }
 
