@@ -4,7 +4,7 @@ void Game::Start()
 {
 	//initialize things here
 	running = true;
-	
+	base.push_back();
 }
 
 void Game::End()

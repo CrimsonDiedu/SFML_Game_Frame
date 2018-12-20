@@ -25,6 +25,8 @@ PhysicsObject::~PhysicsObject()
 
 void PhysicsObject::Update()
 {
+	position.x += velocity.x;
+	position.y += velocity.y;
 }
 
 void PhysicsObject::Render(sf::RenderWindow * window)
