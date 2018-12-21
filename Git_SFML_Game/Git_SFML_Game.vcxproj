@@ -161,6 +161,7 @@
   <ItemGroup>
     <ClInclude Include="BaseObject.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="lifeform.h" />
     <ClInclude Include="PhysicsObject.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -169,6 +170,7 @@
   <ItemGroup>
     <ClCompile Include="BaseObject.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="lifeform.cpp" />
     <ClCompile Include="PhysicsObject.cpp" />
     <ClCompile Include="SFML_Template.cpp" />
     <ClCompile Include="stdafx.cpp">

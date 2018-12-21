@@ -1,22 +1,23 @@
 #include "stdafx.h"
+#include "Game.h"
 
-Game * instance = 0;
+Game * Game::instance = 0;
 
 void Game::Start()
 {
 	//initialize things here
 	running = true;
-
-	PhysicsObject * p = new PhysicsObject();
-	p->SetSpeed(5);
-	p->SetDirection(0);
-	base.push_back(p);
-	p = new PhysicsObject();
-	p->SetPosition(sf::Vector2f(200, 0));
-	p->GetShape()->setFillColor(sf::Color::Blue);
-	p->SetSpeed(-5);
-	p->SetDirection(0);
-	base.push_back(p);
+	sf::Vector2u bounds = window->getSize();
+	sf::Vector2f pos = sf::Vector2f(bounds.x / 2, bounds.y / 2);
+	lifeform* Lifeform;
+	int limit = rand() % 10+10;
+	for (int i = 0; i < limit; i++) {
+		Lifeform = new lifeform();
+		Lifeform->SetPosition(pos);
+		Lifeform->SetDirection((i % 4) * 90);
+		Lifeform->SetSpeed(10+(4*i));
+		base.push_back(Lifeform);
+	}
 }
 
 void Game::End()
@@ -112,4 +113,9 @@ sf::Vector2i Game::GetMousePosition(sf::RenderWindow * window)
 {
 	sf::Vector2i offset(12, 54);
 	return sf::Mouse::getPosition() - window->getPosition() - offset;
+}
+
+TextureManager * Game::GetTextureManager()
+{
+	return &textureManager;
 }

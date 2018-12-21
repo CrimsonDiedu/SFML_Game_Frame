@@ -21,9 +21,9 @@ public:
 	void Render(sf::RenderWindow * window);
 
 #pragma region Setters
-	void SetDirection(float d);
-	void SetSpeed(float s);
-	void SetVelocity(sf::Vector2f velocity);
+	virtual void SetDirection(float d);
+	virtual void SetSpeed(float s);
+	virtual void SetVelocity(sf::Vector2f velocity);
 #pragma endregion
 
 #pragma region Getters

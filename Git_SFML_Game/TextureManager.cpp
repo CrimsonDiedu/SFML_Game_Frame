@@ -9,7 +9,7 @@ TextureManager::TextureManager()
 
 TextureManager::~TextureManager()
 {
-	for (int i = 0; i < textures.size(); i++) {
+	for (unsigned int i = 0; i < textures.size(); i++) {
 		delete textures[i];
 	}
 	textures.clear();
@@ -17,7 +17,7 @@ TextureManager::~TextureManager()
 
 sf::Texture * TextureManager::LoadImage(const char * filename)
 {
-	sf::Texture * texture;
+	sf::Texture * texture = nullptr;
 	bool foundTexture = false;
 	for (unsigned int i = 0; i < textures.size(); i++) {
 		if (strcmp(textures[i]->name, filename) == 0) {
@@ -30,7 +30,12 @@ sf::Texture * TextureManager::LoadImage(const char * filename)
 		TextureData * NewTexture = new TextureData();
 		NewTexture->name = filename;
 		NewTexture->tex = texture = new sf::Texture();
-		texture->loadFromFile(filename);
+		if (texture->loadFromFile(filename)) {
+			std::cout<<"Loaded "<<filename<<" Successfully";
+		}
+		else {
+			std::cout << "\nYouCouldn'tLoadidiot";
+		}
 	}
 	return texture;
 }
