@@ -1,9 +1,9 @@
 #pragma once
-class BaseObject;
+class PhysicsObject;
 
 class Game
 {
-	std::vector<BaseObject*> base;
+	std::vector<PhysicsObject*> base;
 	sf::RenderWindow * window;
 	bool running;
 	void Start();
@@ -11,8 +11,9 @@ class Game
 
 	void Update();
 	void Render();
-public:
 	Game();
+	static Game * instance;
+public:
 	~Game();
 
 	void Play();
@@ -20,7 +21,7 @@ public:
 
 
 	static int  TwoTo1D(int x, int y, int width);
-
+	static Game * GetInstance();
 	static sf::Vector2i GetMousePosition(sf::RenderWindow * window);
 
 };

@@ -13,6 +13,7 @@ public:
 	virtual void Render(sf::RenderWindow * window) = 0;
 	virtual void OnStart() = 0;
 	virtual void OnDisable() = 0;
+	virtual void Collision(BaseObject * other);
 #pragma region Getters
 	sf::Vector2f GetPosition();
 	sf::Vector2f GetVelocity();

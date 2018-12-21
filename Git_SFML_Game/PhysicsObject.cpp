@@ -16,22 +16,42 @@ void PhysicsObject::Move()
 
 PhysicsObject::PhysicsObject()
 {
+	OnStart();
 }
 
 
 PhysicsObject::~PhysicsObject()
 {
+	OnDisable();
+}
+
+void PhysicsObject::OnStart()
+{
+	SetPosition(sf::Vector2f(0.f, 0.f));
+	SetVelocity(sf::Vector2f(0.f, 0.f));
+	sf::Vector2f size(32.f, 32.f);
+	shape = new sf::RectangleShape(size);
+	shape->setPosition(position);
+}
+
+void PhysicsObject::OnDisable()
+{
+	delete shape;
 }
 
 void PhysicsObject::Update()
 {
 	position.x += velocity.x;
 	position.y += velocity.y;
+
+	shape->setPosition(position);
+
 }
 
 void PhysicsObject::Render(sf::RenderWindow * window)
 {
-	window->draw(*shape);
+	if(shape != nullptr)
+		window->draw(*shape);
 }
 
 float PhysicsObject::GetDirection()

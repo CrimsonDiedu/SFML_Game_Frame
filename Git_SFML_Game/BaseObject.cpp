@@ -11,6 +11,11 @@ BaseObject::~BaseObject()
 {
 }
 
+void BaseObject::Collision(BaseObject * other)
+{
+	
+}
+
 sf::Vector2f BaseObject::GetPosition()
 {
 	return position;

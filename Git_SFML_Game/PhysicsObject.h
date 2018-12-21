@@ -8,13 +8,15 @@ class PhysicsObject :
 	public BaseObject
 {
 	void UpdateVelocity();
-	float direction, speed;
+	float direction, speed,mass;
 
 	void Move();
 public:
 	PhysicsObject();
 	~PhysicsObject();
 
+	void OnStart();
+	void OnDisable();
 	void Update();
 	void Render(sf::RenderWindow * window);
 
