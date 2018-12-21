@@ -1,31 +1,44 @@
 #include "stdafx.h"
-#include "lifeform.h"
+#include "Lifeform.h"
 
 
-lifeform::lifeform()
+Lifeform::Lifeform()
 {
 }
 
 
-lifeform::~lifeform()
+Lifeform::~Lifeform()
 {
 }
 
-void lifeform::Update()
+void Lifeform::Update()
 {
 	PhysicsObject::Update();
+sf::Vector2u size = Game::GetInstance()->GetWindow()->getSize();
+	if (position.x < 0) {
+		position.x = size.x;
+	}
+	else if (position.y < 0) {
+		position.y = size.y;
+	}
+	else if (position.x > size.x) {
+		position.x = 0;
+	}
+	else if (position.y > size.y) {
+		position.y = 0;
+	}
 }
 
-void lifeform::Render(sf::RenderWindow * window)
+void Lifeform::Render(sf::RenderWindow * window)
 {
 	PhysicsObject::Render(window);
 }
 
-void lifeform::Collision(BaseObject * other)
+void Lifeform::Collision(BaseObject * other)
 {
 }
 
-void lifeform::SetDirection(float d)
+void Lifeform::SetDirection(float d)
 {
 	PhysicsObject::SetDirection(d);
 

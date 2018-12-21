@@ -15,14 +15,14 @@ void Game::Start()
 	running = true;
 	sf::Vector2u bounds = window->getSize();
 	sf::Vector2f pos = sf::Vector2f(bounds.x / 2.f, bounds.y / 2.f);
-	lifeform* Lifeform;
+	Lifeform* lifeform;
 	int limit = 18;
 	for (int i = 0; i < limit; i++) {
-		Lifeform = new lifeform();
-		Lifeform->SetPosition(pos);
-		Lifeform->SetDirection((i % 4) * 90.f);
-		Lifeform->SetSpeed(5);
-		base.push_back(Lifeform);
+		lifeform = new Lifeform();
+		lifeform->SetPosition(pos);
+		lifeform->SetDirection((i % 4) * 90.f);
+		lifeform->SetSpeed(5);
+		base.push_back(lifeform);
 	}
 }
 

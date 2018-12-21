@@ -1,10 +1,10 @@
 #pragma once
-class lifeform : public PhysicsObject
+class Lifeform : public PhysicsObject
 {
 	float hp;
 public:
-	lifeform();
-	~lifeform();
+	Lifeform();
+	~Lifeform();
 
 	void Update();
 	void Render(sf::RenderWindow * window);
