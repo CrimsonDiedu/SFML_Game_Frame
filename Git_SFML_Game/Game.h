@@ -3,9 +3,11 @@ class PhysicsObject;
 
 class Game
 {
-	std::vector<PhysicsObject*> base;
+	std::vector<PhysicsObject*> base,queue;
 	sf::RenderWindow * window;
+	sf::Clock clock;
 	TextureManager textureManager;
+
 	bool running;
 	void Start();
 	void End();
@@ -26,5 +28,8 @@ public:
 	static sf::Vector2i GetMousePosition(sf::RenderWindow * window);
 
 	TextureManager * GetTextureManager();
+	float GetTimeSeconds();
+	sf::RenderWindow* GetWindow();
+	bool AddObject(PhysicsObject* object);
 };
 

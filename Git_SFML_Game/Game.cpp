@@ -3,19 +3,25 @@
 
 Game * Game::instance = 0;
 
+#ifdef DEBUG_BUILD
+#define BASEOBJECT_LIMIT 25
+#else
+#define BASEOBJECT_LIMIT 200
+#endif
+
 void Game::Start()
 {
 	//initialize things here
 	running = true;
 	sf::Vector2u bounds = window->getSize();
-	sf::Vector2f pos = sf::Vector2f(bounds.x / 2, bounds.y / 2);
+	sf::Vector2f pos = sf::Vector2f(bounds.x / 2.f, bounds.y / 2.f);
 	lifeform* Lifeform;
-	int limit = rand() % 10+10;
+	int limit = 18;
 	for (int i = 0; i < limit; i++) {
 		Lifeform = new lifeform();
 		Lifeform->SetPosition(pos);
-		Lifeform->SetDirection((i % 4) * 90);
-		Lifeform->SetSpeed(10+(4*i));
+		Lifeform->SetDirection((i % 4) * 90.f);
+		Lifeform->SetSpeed(5);
 		base.push_back(Lifeform);
 	}
 }
@@ -48,7 +54,15 @@ void Game::Update()
 	for (unsigned int i = 0; i < base.size(); i++) {
 		base[i]->Update();
 	}
-	
+	//add any objects created this loop to base vector
+
+	if (queue.size() != 0)
+	{
+		for (unsigned int i = 0; i < queue.size(); i++) {
+			base.push_back(queue[i]);
+		}
+		queue.clear();
+	}
 }
 
 void Game::Render()
@@ -85,6 +99,7 @@ void Game::Play()
 				}
 			}
 			Update();
+		
 			Render();
 		}
 	}
@@ -118,4 +133,25 @@ sf::Vector2i Game::GetMousePosition(sf::RenderWindow * window)
 TextureManager * Game::GetTextureManager()
 {
 	return &textureManager;
+}
+
+float Game::GetTimeSeconds()
+{
+	return clock.getElapsedTime().asSeconds();
+}
+
+sf::RenderWindow * Game::GetWindow()
+{
+	return window;
+}
+
+bool Game::AddObject(PhysicsObject * object)
+{
+	bool addedObject = false;
+	if (base.size() < BASEOBJECT_LIMIT) {
+		queue.push_back(object);
+		addedObject = true;
+	}
+	return addedObject;
+	
 }
