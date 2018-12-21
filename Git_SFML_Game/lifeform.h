@@ -1,7 +1,9 @@
 #pragma once
 class lifeform : public PhysicsObject
 {
-	float hp;
+	float hp,secondsSinceTurn;
+	int secondPerRotation;
+	
 public:
 	lifeform();
 	~lifeform();
