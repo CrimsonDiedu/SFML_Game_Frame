@@ -9,6 +9,6 @@ public:
 	void Update();
 	void Render(sf::RenderWindow * window);
 	void Collision(BaseObject * other);
-	void SetDirection(float d);
+	virtual void SetDirection(float d);
 };
 

@@ -29,9 +29,9 @@ void PhysicsObject::OnStart()
 {
 	SetPosition(sf::Vector2f(0.f, 0.f));
 	SetVelocity(sf::Vector2f(0.f, 0.f));
-	sf::Vector2f size(128.f, 128.f);
+	sf::Vector2f size(32.f, 32.f);
 	shape = new sf::RectangleShape(size);
-	shape->setOrigin(64, 64);
+	shape->setOrigin(16, 16);
 	shape->setPosition(position);
 }
 

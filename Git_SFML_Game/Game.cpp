@@ -18,12 +18,13 @@ void Game::Start()
 	Lifeform* lifeform;
 	int limit = 18;
 	for (int i = 0; i < limit; i++) {
-		lifeform = new Lifeform();
+		lifeform = new Minion();
 		lifeform->SetPosition(pos);
 		lifeform->SetDirection((i % 4) * 90.f);
 		lifeform->SetSpeed(5);
 		base.push_back(lifeform);
 	}
+	lastFrameElapsedTime = 0;
 }
 
 void Game::End()
@@ -36,6 +37,9 @@ void Game::End()
 
 void Game::Update()
 {
+	deltaTime = (clock.getElapsedTime().asSeconds()-lastFrameElapsedTime);
+	lastFrameElapsedTime += deltaTime;
+	
 	//Update all game objects, typically passing the change in time between updates
 	for (unsigned int i = 0; i < base.size(); i++) {
 		for (unsigned int j = 0; j < base.size(); j++) {
@@ -138,6 +142,11 @@ TextureManager * Game::GetTextureManager()
 float Game::GetTimeSeconds()
 {
 	return clock.getElapsedTime().asSeconds();
+}
+
+float Game::GetDeltaTime()
+{
+	return deltaTime;
 }
 
 sf::RenderWindow * Game::GetWindow()

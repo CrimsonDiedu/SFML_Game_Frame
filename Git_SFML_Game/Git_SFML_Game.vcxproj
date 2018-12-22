@@ -161,8 +161,10 @@
   <ItemGroup>
     <ClInclude Include="BaseObject.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="lifeform.h" />
+    <ClInclude Include="Lifeform.h" />
+    <ClInclude Include="Minion.h" />
     <ClInclude Include="PhysicsObject.h" />
+    <ClInclude Include="Projectile.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TextureManager.h" />
@@ -170,8 +172,10 @@
   <ItemGroup>
     <ClCompile Include="BaseObject.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="lifeform.cpp" />
+    <ClCompile Include="Lifeform.cpp" />
+    <ClCompile Include="Minion.cpp" />
     <ClCompile Include="PhysicsObject.cpp" />
+    <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="SFML_Template.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

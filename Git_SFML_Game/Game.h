@@ -16,6 +16,7 @@ class Game
 	void Render();
 	Game();
 	static Game * instance;
+	float deltaTime,lastFrameElapsedTime;
 public:
 	~Game();
 
@@ -29,6 +30,7 @@ public:
 
 	TextureManager * GetTextureManager();
 	float GetTimeSeconds();
+	float GetDeltaTime();
 	sf::RenderWindow* GetWindow();
 	bool AddObject(PhysicsObject* object);
 };
