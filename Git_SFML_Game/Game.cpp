@@ -24,7 +24,7 @@ void Game::Start()
 		lifeform = new Minion();
 		lifeform->SetPosition(pos);
 		lifeform->SetDirection((i % 4) * 90.f);
-		lifeform->SetSpeed(5);
+		lifeform->SetSpeed(10);
 		base.push_back(lifeform);
 	}
 	lastFrameElapsedTime = 0;

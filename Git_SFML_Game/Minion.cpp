@@ -3,7 +3,7 @@
 Minion::Minion()
 {
 	shape->setFillColor(sf::Color::Red);
-	timer = new Timer(this, 1, true);
+	timer = new Timer(this, 0.5f, true,0.0251f);
 	Game::GetInstance()->AddTimer(timer);
 	
 }
@@ -14,7 +14,7 @@ Minion::~Minion()
 
 void Minion::Update()
 {
-	PhysicsObject::Update();
+	Lifeform::Update();
 }
 
 void Minion::Render(sf::RenderWindow * window)
@@ -52,9 +52,18 @@ void Minion::SetDirection(float d)
 
 void Minion::AddDot()
 {
-	sf::CircleShape * dot = new sf::CircleShape(2, 10);
-	dot->setPosition(GetPosition());
+	
+	sf::CircleShape * dot;
+	if (dotTrail.size() < 50) {
+		dot = new sf::CircleShape(2, 10);
+	}
+	else {
+		dot = dotTrail[0];
+		dotTrail.erase(dotTrail.begin());
+		
+	}
 	dotTrail.push_back(dot);
+	dot->setPosition(GetPosition());
 }
 
 void Minion::Notify()

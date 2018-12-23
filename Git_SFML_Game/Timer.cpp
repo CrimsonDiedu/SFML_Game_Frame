@@ -4,6 +4,7 @@
 
 Timer::Timer()
 {
+	notifying = false;
 }
 
 Timer::Timer(Observer* observer, float tDuration, bool repeating, float tHold)
@@ -11,6 +12,8 @@ Timer::Timer(Observer* observer, float tDuration, bool repeating, float tHold)
 	timeRemaining = duration = tDuration;
 	hold = tHold;
 	this->repeating = repeating;
+	AddObserver(observer);
+	notifying = false;
 }
 
 
@@ -34,19 +37,28 @@ void Timer::Update()
 			if (repeating) {
 				timeRemaining = duration;
 			}
-			for (unsigned int i = 0; i < observers.size(); i++) {
-				observers[i]->Notify();
-			}
+
+			BeginNotification();
+			NotifyObservers();
 		}
 		else {
+			if (!notifying){
+				BeginNotification();
+			}
 			if (-timeRemaining < hold) {
-
+				NotifyObservers();
 			}
 			else {
 				if (repeating) {
 					timeRemaining = duration;
 				}
 			}
+		}
+	}
+	else {
+		if (notifying) {
+			EndNotification();
+			notifying = false;
 		}
 	}
 }
@@ -62,4 +74,27 @@ void Timer::OnStart()
 
 void Timer::OnDisable()
 {
+}
+
+void Timer::NotifyObservers()
+{
+	for (unsigned int i = 0; i < observers.size(); i++) {
+		observers[i]->Notify();
+	}
+}
+
+void Timer::BeginNotification()
+{
+	for (unsigned int i = 0; i < observers.size(); i++) {
+		observers[i]->NotifyBegin();
+	}
+	notifying = true;
+}
+
+void Timer::EndNotification()
+{
+	for (unsigned int i = 0; i < observers.size(); i++) {
+		observers[i]->NotifyEnd();
+	}
+	notifying = false;
 }
