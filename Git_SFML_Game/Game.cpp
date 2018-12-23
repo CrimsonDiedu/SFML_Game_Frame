@@ -5,9 +5,12 @@ Game * Game::instance = 0;
 
 #ifdef DEBUG_BUILD
 #define BASEOBJECT_LIMIT 25
+#define TIMER_LIMIT 100
 #else
 #define BASEOBJECT_LIMIT 200
+#define TIMER_LIMIT 300
 #endif
+
 
 void Game::Start()
 {
@@ -58,6 +61,13 @@ void Game::Update()
 	for (unsigned int i = 0; i < base.size(); i++) {
 		base[i]->Update();
 	}
+
+
+	//run the update method on timers
+	for (unsigned int i = 0; i < timers.size(); i++) {
+		timers[i]->Update();
+	}
+
 	//add any objects created this loop to base vector
 
 	if (queue.size() != 0)
@@ -163,4 +173,16 @@ bool Game::AddObject(PhysicsObject * object)
 	}
 	return addedObject;
 	
+}
+
+bool Game::AddTimer(BaseObject * timer)
+{
+	bool addedObject = false;
+	if (timers.size() < TIMER_LIMIT) {
+		timers.push_back(timer);
+		addedObject = true;
+	}
+
+	return addedObject;
+
 }

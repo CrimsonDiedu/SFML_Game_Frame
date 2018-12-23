@@ -4,6 +4,7 @@ class PhysicsObject;
 class Game
 {
 	std::vector<PhysicsObject*> base,queue;
+	std::vector<BaseObject*> timers;
 	sf::RenderWindow * window;
 	sf::Clock clock;
 	TextureManager textureManager;
@@ -33,5 +34,6 @@ public:
 	float GetDeltaTime();
 	sf::RenderWindow* GetWindow();
 	bool AddObject(PhysicsObject* object);
+	bool AddTimer(BaseObject * timer);
 };
 
